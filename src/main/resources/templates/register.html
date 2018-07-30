@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>myPlaces Register</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
+
+    <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <form class="form-horizontal" th:object="${newuser}" th:action="@{/register}" method="post">
+        <div class="form-group">
+            <label class="control-label">User name:</label>
+            <input type="text" class="form-control" th:field="*{username}"/>
+            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Password:</label>
+            <input type="password" class="form-control" th:field="*{password}"/>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"/>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-default">Register</button>
+        </div>
+    </form>
+</div>
+<footer class="container">
+    <div>@ 2018 myPlaces</div>
+</footer>
+
+</body>
+</html>

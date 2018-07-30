@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>myPlaces</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
+
+    <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <!-- get current position once-->
+        <button onclick="getLocation()" class="btn btn-default btn-sm">
+            Get current location
+        </button>
+
+        <p id="getLocation"></p>
+
+        <script>
+        var x = document.getElementById("getLocation");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+        }
+        </script>
+    </div>
+
+
+    <div class="row">
+        <form action="#" th:action="@{/logout}" method="post">
+            <button class="btn btn-default btn-sm">
+                <span>Log out</span>
+            </button>
+        </form>
+    </div>
+</div>
+<footer class="container">
+    <div>@ 2018 myPlaces</div>
+</footer>
+</body>
+</html>
