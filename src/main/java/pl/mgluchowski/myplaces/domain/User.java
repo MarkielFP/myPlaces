@@ -3,7 +3,8 @@ package pl.mgluchowski.myplaces.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -23,21 +24,26 @@ public class User {
     private String password;
 
     // creation date
-    private Date date;
+    private LocalDateTime date;
 
     private boolean enabled;
 
     private String passwordConfirm;
 
+    @OneToMany(mappedBy = "ownerUser")
+    private Set<MyPlace> myPlaces;
+
     public User() {
-        this.date = new Date();
+        this.date = LocalDateTime.now();
         this.enabled = true;
     }
 
-    public User(String username, String password) {
+    public User(@NotNull String username,
+                @NotNull String password) {
         this.username = username;
         this.password = password;
         this.enabled = true;
+        this.date = LocalDateTime.now();
     }
 
     public String getUsername() {

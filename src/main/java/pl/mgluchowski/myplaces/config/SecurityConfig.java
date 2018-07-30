@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         security.authorizeRequests()
                 .antMatchers("/h2-console/**","/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/","/index","/register","/webjars").permitAll()
+                .antMatchers("/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().defaultSuccessUrl("/myplaces")
                 .and().logout().logoutSuccessUrl("/login").permitAll()

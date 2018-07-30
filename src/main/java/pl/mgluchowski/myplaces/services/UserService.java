@@ -20,15 +20,21 @@ public class UserService {
 //    @Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void createUser(User user){
+    public void createUser(User user) {
 //        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         usersRepository.createUser(user);
         Role userRole = new Role(user.getUsername());
         roleRepository.addRole(userRole);
     }
 
-
-
+    public void createUser(User user, String role) {
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        usersRepository.createUser(user);
+        Role userRole1 = new Role(user.getUsername());
+        roleRepository.addRole(userRole1);
+        Role userRole2 = new Role(user.getUsername(), role);
+        roleRepository.addRole(userRole2);
+    }
 
 
 }

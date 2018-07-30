@@ -1,10 +1,10 @@
 package pl.mgluchowski.myplaces.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 public class MyPoint {
@@ -14,26 +14,40 @@ public class MyPoint {
     private Long id;
 
     // Point name
-    private String name;
+    @NotNull
+    private String namePoint;
 
     // creation date
-    private Date date;
+    private LocalDateTime date;
 
     // Point Latitude ("+" = N; "-" = S)
+    @NotNull
+    @Range(min = -90, max = 90)
     private double latitude;
 
     // Point Longitude ("+" = E; "-" = W)
+    @NotNull
+    @Range(min = -180, max = 180)
     private double longitude;
 
+    // Owner name
+    @NotNull
+    @ManyToOne
+    private MyPlace ownerPlace;
 
     // required by Hibernate
     private MyPoint() {
-        this.date = new Date();
+        this.date = LocalDateTime.now();
     }
 
-    public MyPoint(String name, double latitude, double longitude) {
-        this.name = name;
+    public MyPoint(@NotNull String name,
+                   @NotNull double latitude,
+                   @NotNull double longitude,
+                   @NotNull MyPlace ownerPlace) {
+        this.namePoint = name;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.ownerPlace = ownerPlace;
+        this.date = LocalDateTime.now();
     }
 }
