@@ -7,12 +7,10 @@
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.2/css/bootstrap.min.css}">
 
-    <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.1.2/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <div class="container">
-    <form class="form-horizontal" th:object="${newuser}" th:action="@{/register}" method="post">
+    <form action="#" class="form-horizontal" th:object="${user}" th:action="@{/register}" method="post">
         <div class="form-group">
             <label class="control-label">User name:</label>
             <input type="text" class="form-control" th:field="*{username}"/>
@@ -32,5 +30,7 @@
     <div>@ 2018 myPlaces</div>
 </footer>
 
+<script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.1.2/js/bootstrap.min.js}"></script>
 </body>
 </html>

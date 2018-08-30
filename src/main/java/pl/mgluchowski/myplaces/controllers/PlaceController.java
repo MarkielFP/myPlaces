@@ -30,16 +30,5 @@ public class PlaceController {
 //    public String myplaces(Model model) {
 //        return "myplaces";
 //    }
-//
-//    @RequestMapping(value = "/register", method = RequestMethod.POST)
-//    public String saveUser(User newuser) {
-//        userService.createUser(newuser);
-//        return "redirect:/login";
-//    }
-//
-//    @RequestMapping(value ="/register", method = RequestMethod.GET)
-//    public String register(Model model) {
-//        model.addAttribute("newuser", new User());
-//        return "register";
-//    }
+
 }

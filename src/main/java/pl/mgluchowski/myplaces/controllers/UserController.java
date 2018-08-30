@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.mgluchowski.myplaces.domain.User;
+import pl.mgluchowski.myplaces.domain.repository.UserRepository;
 import pl.mgluchowski.myplaces.services.UserService;
 
 import javax.validation.Valid;
@@ -26,21 +27,21 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {
-        model.addAttribute("newuser", new User());
-        return "register";
+        model.addAttribute("user", new User());
+        return "registerform";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String saveUser(@Valid User newuser, BindingResult bindingResult) {
+    public String saveUser(@Valid User user, BindingResult bindingResult) {
             if (bindingResult.hasErrors()) {
-                System.out.println("There were errors");
+                System.out.println("There were errors on registration");
                 bindingResult.getAllErrors().forEach(error -> {
                             System.out.println(error.getObjectName() + " " + error.getDefaultMessage());
                         }
                 );
-                return "register";
+                return "registerform";
             } else {
-                userService.createUser(newuser);
+                userService.createUser(user);
                 return "redirect:/login";
             }
     }
